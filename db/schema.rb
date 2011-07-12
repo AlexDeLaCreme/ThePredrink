@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110708122821) do
+ActiveRecord::Schema.define(:version => 20110712143739) do
+
+  create_table "artists", :force => true do |t|
+    t.string   "name"
+    t.integer  "beatport_artist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "artists_tracks", :id => false, :force => true do |t|
+    t.integer "artist_id"
+    t.integer "track_id"
+  end
 
   create_table "genres", :force => true do |t|
     t.decimal  "beatport_genre_id"
@@ -21,12 +33,12 @@ ActiveRecord::Schema.define(:version => 20110708122821) do
   end
 
   create_table "tracks", :force => true do |t|
-    t.text     "soundcloud_url"
-    t.decimal  "position"
-    t.decimal  "beatport_genre_id"
-    t.text     "mix_name"
-    t.text     "name"
-    t.decimal  "beatport_track_id"
+    t.string   "soundcloud_url"
+    t.integer  "position"
+    t.integer  "beatport_genre_id"
+    t.string   "mix_name"
+    t.integer  "beatport_track_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

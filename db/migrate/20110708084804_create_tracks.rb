@@ -2,10 +2,10 @@ class CreateTracks < ActiveRecord::Migration
   def self.up
     create_table :tracks do |t|
       t.string :soundcloud_url
-      t.decimal :position
-      t.decimal :beatport_genre_id
+      t.integer :position
+      t.integer :beatport_genre_id
       t.string :mix_name
-      t.decimal :beatport_track_id
+      t.integer :beatport_track_id
       t.string :name
 
       t.timestamps
