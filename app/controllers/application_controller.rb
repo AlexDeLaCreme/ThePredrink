@@ -5,10 +5,13 @@ class ApplicationController < ActionController::Base
   require 'json'
   require 'uri'
   
+  @@CLIENT_ID = '481c7032a27349882e9c8b4498a34d89'
+  
   def update_db  
     # clean DB first
     Track.delete_all
     Artist.delete_all
+    SoundcloudTrack.delete_all
 
     genres = Genre.all
     
@@ -33,6 +36,8 @@ class ApplicationController < ActionController::Base
         # add artists if needed
         artists = track[:artists]
         
+        query_string = ""
+        
         artists.each { |artist|
           if Artist.where(:beatport_artist_id => artist[:id]).empty?
             a = Artist.new
@@ -45,6 +50,29 @@ class ApplicationController < ActionController::Base
             a = Artist.find_by_beatport_artist_id(artist[:id])
             t.artists << a  
           end
+          query_string = a.name.parameterize('+') + "+" + query_string
+        }
+        
+        #search for matching tracks on Soundcloud
+        query_string = t.name.parameterize('+') + "+" + query_string
+        
+        url = "http://api.soundcloud.com/tracks.json?client_id=#{@@CLIENT_ID}&q=#{query_string}&types=original,remix"
+        uri = URI.parse(url)
+         
+        http = Net::HTTP.new(uri.host, uri.port)
+        request = Net::HTTP::Get.new(uri.request_uri)
+        response = http.request(request);
+        
+        tracks_found_on_sc = JSON.parse(response.body, :symbolize_names => true)
+      
+        tracks_found_on_sc.each { |sc_t|
+          sc_track = SoundcloudTrack.new
+          sc_track.soundcloud_id = sc_t[:id]
+          sc_track.url = sc_t[:permalink_url]
+          
+          t.soundcloud_tracks << sc_track
+          
+          sc_track.save
         }
         
         t.save
@@ -53,8 +81,6 @@ class ApplicationController < ActionController::Base
   end
   
   def sc
-    @CLIENT_ID = '481c7032a27349882e9c8b4498a34d89'
-     
     Track.all(:limit => 2).each { |t|
       query_string = ""
       query_string = t.name.parameterize('+')
@@ -62,7 +88,7 @@ class ApplicationController < ActionController::Base
         query_string = a.name.parameterize('+') + "+" + query_string
       }
    
-      url = "http://api.soundcloud.com/tracks.json?client_id=#{@CLIENT_ID}&q=#{query_string}&types=original,remix"
+      url = "http://api.soundcloud.com/tracks.json?client_id=#{@@CLIENT_ID}&q=#{query_string}&types=original,remix"
       uri = URI.parse(url)
        
       http = Net::HTTP.new(uri.host, uri.port)
