@@ -55,9 +55,7 @@ class ApplicationController < ActionController::Base
   def sc
     @CLIENT_ID = '481c7032a27349882e9c8b4498a34d89'
      
-    tracks = Track.all
-   
-    tracks.each { |t|
+    Track.all(:limit => 2).each { |t|
       query_string = ""
       query_string = t.name.parameterize('+')
       t.artists.each { |a| 
@@ -73,8 +71,10 @@ class ApplicationController < ActionController::Base
       
       tracks_found_on_sc = JSON.parse(response.body, :symbolize_names => true)
     
-      logger.debug t.name
-      logger.debug tracks_found_on_sc.length 
+      logger.debug url
+      tracks_found_on_sc.each { |sc_t|
+        logger.debug sc_t.to_xml
+      }
     }
     
     respond_to do |format|
