@@ -1,0 +1,5 @@
+<ul id="genres">
+	<% Genre.all.each { |genre| %>
+		<li><%= link_to genre.name.upcase, genre_path(genre), :class => genre.name.parameterize %></li><%= ' / ' if genre != Genre.all.last %> 
+	<% } %>
+</ul>

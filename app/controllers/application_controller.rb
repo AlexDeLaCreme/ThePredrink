@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   
   @@CLIENT_ID = '481c7032a27349882e9c8b4498a34d89'
   
+  def index
+  end
+  
   def update_db  
     # clean DB first
     Track.delete_all

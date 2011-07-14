@@ -1,0 +1,318 @@
+/*CSS Document*/
+
+/* genre colors */
+.drum-bass 
+{
+	color: #A20014; /* red */
+}
+.electro-house
+{
+	color: #1084B3; /* blue */
+}
+.progressive-house
+{
+	color: #8A67A9; /* purple */
+}
+.dubstep
+{
+	color: #B68316; /* yellow */
+}
+
+/* genre-specific buttons */
+
+.electro-house A.play-btn
+{
+	background-image: url(../images/blue-play.png);
+}
+.electro-house A.like-btn
+{
+	background-image: url(../images/blue-ship.png);
+}
+.dubstep A.play-btn
+{
+	background-image: url(../images/yellow-play.png);
+}
+.dubstep A.like-btn
+{
+	background-image: url(../images/yellow-ship.png);
+}
+.progressive-house A.play-btn
+{
+	background-image: url(../images/purple-play.png);
+}
+.progressive-house A.like-btn
+{
+	background-image: url(../images/purple-ship.png);
+}
+.drum-bass A.play-btn
+{
+	background-image: url(../images/red-play.png);
+}
+.drum-bass A.like-btn
+{
+	background-image: url(../images/red-ship.png);
+}
+
+/*+clearfix {*/
+#select-by:after, #header:after, #controls:after
+{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	font-size: 0;
+}
+#select-by, #header, #controls
+{
+	display: inline-block;
+}
+#select-by, #header, #controls
+{
+/*\*/
+	display: block;
+/**/
+	_height: 1px;
+}
+/*+}*/
+#footer
+{
+	height: 20px;
+	background-color: #000;
+	background-image: url(../images/huge-line.png);
+	background-repeat: repeat-x;
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	padding-top: 8px;
+}
+#footer-holder
+{
+	width: 70%;
+	margin: 0 auto;
+}
+#track-duration
+{
+	color: #FFFFFF;
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+	float: right;
+	display: block;
+	width: 50px;
+}
+#footer-holder .like-btn 
+{
+	float: right;
+	background-image: url(../images/blue-ship.png);
+}
+#track-name
+{
+	color: #FFFFFF;
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+	display: block;
+	float: left;
+}
+BODY, HTML
+{
+	margin: 0;
+	background-color: #111111;
+}
+#sidebar
+{
+	width: 248px;
+	background-color: #000;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+}
+#facebook, #tweeter
+{
+	width: 54px;
+	height: 61px;
+	position: absolute;
+	margin-top: 24px;
+}
+P#info
+{
+	text-align: center;
+	color: #FFF;
+	font-family: Arial, sans-serif;
+	font-size: 7pt;
+	text-transform: uppercase;
+	margin-top: 23px;
+}
+P#info .gray
+{
+	color: #818181;
+}
+#line
+{
+	margin-left: 67px;
+	margin-top: 34px;
+}
+#space-man
+{
+	margin: 25px auto 0 57px;
+}
+#main-content
+{
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin-left: 248px;
+}
+#pagination
+{
+	color: #818181;
+	font-family: Arial, sans-serif;
+	font-size: 8pt;
+	width: 55px;
+	position: absolute;
+	bottom: 80px;
+	left: 50%;
+	margin-left: 100px;
+}
+#tracks
+{
+	list-style: none;
+	padding: 0;
+}
+/*[clearfix]*/#select-by
+{
+	color: #818181;
+	font-family: Arial, sans-serif;
+	font-size: 8pt;
+	text-align: right;
+	margin-top: 26px;
+}
+#select-by UL
+{
+	list-style: none;
+	float: right;
+	border: 1px solid #AE9C9C;
+	display: inline;
+	color: #FFFFFF;
+}
+#select-by A
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+/*[clearfix]*/#header
+{
+	border-bottom: 1px solid #2F2F2F;
+	width: 100%;
+	padding-bottom: 5px;
+}
+#header #logo
+{
+	float: left;
+}
+#header #genres
+{
+	color: #FFF;
+	font-family: Arial, sans-serif;
+	font-size: 7pt;
+	position: absolute;
+	right: 30px;
+	margin-top: 32px;
+}
+#header #genres A
+{
+	text-decoration: none;
+}
+#facebook
+{
+	margin-left: 54px;
+}
+#tweeter
+{
+	margin-left: 128px;
+	margin-top: 26px;
+}
+#header #genres A:hover
+{
+	text-decoration: underline;
+}
+#genres LI
+{
+	list-style-type: none;
+	display: inline;
+}
+#select-by A:hover
+{
+	text-decoration: underline;
+}
+#tracks LI
+{
+	background-color: #000;
+	width: 100%;
+	height: 12px;
+	margin-bottom: 2px;
+	padding-left: 5px;
+	padding-top: 4px;
+	padding-bottom: 5px;
+	color: #FFFFFF;
+	font-family: Arial, sans-serif;
+	font-size: 8pt;
+	background-repeat: no-repeat;
+	background-position: 99% 50%;
+}
+A.play-btn
+{
+	width: 12px;
+	height: 12px;
+	display: block;
+	text-decoration: none;
+}
+A.like-btn
+{
+	width: 15px;
+	height: 14px;
+	display: block;
+	text-decoration: none;
+}
+#tracks LI A.play-btn
+{
+	margin-right: 24px;
+	float: left;
+}
+#tracks LI A.like-btn
+{
+	margin-right: 10px;
+	float: right;
+}
+#prev-button, #next-button
+{
+	display: block;
+	width: 11px;
+	height: 9px;
+	float: left;
+	margin-top: 2px;
+}
+#prev-button
+{
+	background-image: url(../images/previous.png);
+	float: left;
+}
+/*[clearfix]*/#controls
+{
+	width: 76px;
+	float: left;
+	margin-right: 25px;
+}
+#next-button
+{
+	background-image: url(../images/next.png);
+	float: right;
+}
+#play-button
+{
+	background-image: url(../images/blue-play.png);
+	width: 12px;
+	height: 12px;
+	display: block;
+	float: left;
+	margin-left: 22px;
+}

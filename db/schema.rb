@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110713181414) do
+ActiveRecord::Schema.define(:version => 20110714212553) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -26,8 +26,7 @@ ActiveRecord::Schema.define(:version => 20110713181414) do
 
   create_table "genres", :force => true do |t|
     t.decimal  "beatport_genre_id"
-    t.string   "genre"
-    t.string   "color"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
