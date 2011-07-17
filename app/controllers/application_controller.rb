@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
         t.beatport_track_id = track[:id]
         t.name = track[:name]
         t.position = track[:position]
-        t.beatport_genre_id = genre.beatport_genre_id
+        t.genre_id = genre.id
         t.mix_name = track[:mixName]
   
         # add artists if needed
@@ -70,6 +70,7 @@ class ApplicationController < ActionController::Base
       
         tracks_found_on_sc.each { |sc_t|
           sc_track = SoundcloudTrack.new
+          logger.debug sc_t
           sc_track.soundcloud_id = sc_t[:id]
           sc_track.url = sc_t[:permalink_url]
           

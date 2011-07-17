@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714212553) do
+ActiveRecord::Schema.define(:version => 20110717201749) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20110714212553) do
 
   create_table "tracks", :force => true do |t|
     t.integer  "position"
-    t.integer  "beatport_genre_id"
+    t.integer  "genre_id"
     t.string   "mix_name"
     t.integer  "beatport_track_id"
     t.string   "name"

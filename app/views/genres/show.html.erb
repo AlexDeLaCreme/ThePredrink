@@ -1,13 +1,7 @@
 <div id="select-by">Popular: <a href="">This Week</a> | <a href="">This Month</a> | <a href="">All Time</a></div>
 <ul id="tracks" class="<%= @genre.name.parameterize %>">
-	<% Track.find_all_by_beatport_genre_id(@genre.beatport_genre_id, :limit => 20).each { |track|
-			track_name = "#{track.artists.collect(&:name).join(', ')} - #{track.name} (#{track.mix_name})" 
-		%>
-		<li><a href="" class="play-btn">&nbsp;</a><%= track_name %><a href="" class="like-btn">&nbsp;</a></li>
-	<% } %>
-	<!-- <li><a href="" class="play-btn">&nbsp;</a>Calvin Harris - Bounce (BoyzNoize Remix)<a href="" class="like-btn">&nbsp;</a></li>
-    <li><a href="" class="play-btn">&nbsp;</a>Foreign Beggars feat. Skrillex - Still Getting It (Original Mix)<a href="" class="like-btn">&nbsp;</a></li>
-    <li><a href="" class="play-btn">&nbsp;</a>Snoop Dogg - Sensual Seduction (Skrillex Remix)<a href="" class="like-btn">&nbsp;</a></li>
-    <li><a href="" class="play-btn">&nbsp;</a>Fast Foot - Protect Animals (Lazy Rich Remix)<a href="" class="like-btn">&nbsp;</a></li> -->
+	 <% for track in @track_names %>
+		<li><a href="" class="play-btn">&nbsp;</a><%= track %><a href="" class="like-btn">&nbsp;</a></li>
+	<% end %>
 </ul>
-<div id="pagination">2 | 3 | 4 | 5</div>
+<div id="pagination"><%= will_paginate @tracks, :previous_label => '', :next_label => '' %></div>
