@@ -25,17 +25,14 @@
     </div>
     <div id="main-content">
     	<div id="header">
-        	<img id="logo" src="/images/the-predrink.png" />
+        	<%= link_to (image_tag "the-predrink.png", :id => 'logo'), root_path %>
         	<%= render "shared/genres" %>            
         </div>
         <%= yield %>
     </div>
 	<div id="footer">
     	<div id="footer-holder">
-            <div id="controls"><a href="" id="prev-button"></a><a href="" id="play-button"></a><a href="" id="next-button"></a></div>
-            <span id="track-name">Calvin Harris - Bounce (BoyzNoize Remix)</span>
-            <a href="" class="like-btn">&nbsp;</a>
-            <span id="track-duration">6:02</span>
+    		<%= render 'shared/player' unless @current_track.nil? %>
         </div>
     </div>
 </body>
