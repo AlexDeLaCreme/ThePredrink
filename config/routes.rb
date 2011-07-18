@@ -9,13 +9,19 @@ ThePredrink::Application.routes.draw do
   match '/update' => 'application#update_db'
   match '/sc' => 'application#sc'
 
+  match '/tracks/play/:id' => 'tracks#play'
+  match '/tracks/like/:id' => 'tracks#like'
+
+  resources :genres, :only => [:show]
+  
+  root :to => "application#index"
+
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  resources :genres, :only => [:show]
-
+  
   # Sample resource route with options:
   #   resources :products do
   #     member do
@@ -51,7 +57,6 @@ ThePredrink::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "genres#show"
 
   # See how all your routes lay out with "rake routes"
 

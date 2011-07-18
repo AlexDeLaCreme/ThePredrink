@@ -28,7 +28,10 @@
         	<%= link_to (image_tag "the-predrink.png", :id => 'logo'), root_path %>
         	<%= render "shared/genres" %>            
         </div>
-        <%= yield %>
+        <div id="select-by">Popular: <a href="">This Week</a> | <a href="">This Month</a> | <a href="">All Time</a></div>
+        <div id="tracklist">
+        	<%= yield %>
+        </div>
     </div>
 	<div id="footer">
     	<div id="footer-holder">

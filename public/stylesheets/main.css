@@ -286,6 +286,7 @@ A.like-btn
 	height: 14px;
 	display: block;
 	text-decoration: none;
+	border: none;
 }
 #tracks LI A.play-btn
 {

@@ -1,0 +1,1 @@
+page.alert("like track ##{params[:id]}");

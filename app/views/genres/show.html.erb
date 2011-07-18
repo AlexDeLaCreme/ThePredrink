@@ -1,7 +1,0 @@
-<div id="select-by">Popular: <a href="">This Week</a> | <a href="">This Month</a> | <a href="">All Time</a></div>
-<ul id="tracks" class="<%= @genre.name.parameterize %>">
-	 <% for track in @track_names %>
-		<li><a href="" class="play-btn">&nbsp;</a><%= track %><a href="" class="like-btn">&nbsp;</a></li>
-	<% end %>
-</ul>
-<div id="pagination"><%= will_paginate @tracks, :previous_label => '', :next_label => '' %></div>
