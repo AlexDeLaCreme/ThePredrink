@@ -1,0 +1,4 @@
+<div id="controls"><a href="" id="prev-button"></a><%= link_to "", "/tracks/play/#{@track.id}", :class => "play-btn", :remote => true %><a href="" id="next-button"></a></div>
+<span id="track-name"><%= @track.full_name %></span>
+<%= link_to "", "/tracks/like/#{@track.id}", :id => "like-button", :class => "like-btn", :remote => true %>
+<span id="track-duration">6:02</span>

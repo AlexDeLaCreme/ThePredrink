@@ -8,10 +8,17 @@ class ApplicationController < ActionController::Base
   @@CLIENT_ID = '481c7032a27349882e9c8b4498a34d89'
   
   def index
+    @tracks = Track.joins(:soundcloud_tracks).paginate :per_page => 20, :page => params[:page]
+    
+    respond_to { |format|
+      format.html
+      format.js
+    }
   end
   
   def update_db  
     # clean DB first
+    Like.delete_all
     Track.delete_all
     Artist.delete_all
     SoundcloudTrack.delete_all
@@ -68,7 +75,8 @@ class ApplicationController < ActionController::Base
         
         tracks_found_on_sc = JSON.parse(response.body, :symbolize_names => true)
       
-        tracks_found_on_sc.each { |sc_t|
+        unless tracks_found_on_sc.empty?
+          sc_t = tracks_found_on_sc.first
           sc_track = SoundcloudTrack.new
           logger.debug sc_t
           sc_track.soundcloud_id = sc_t[:id]
@@ -77,7 +85,7 @@ class ApplicationController < ActionController::Base
           t.soundcloud_tracks << sc_track
           
           sc_track.save
-        }
+        end
         
         t.save
       }

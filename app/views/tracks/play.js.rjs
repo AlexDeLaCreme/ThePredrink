@@ -1,1 +1,4 @@
-page.replace_html 'footer-holder', render('shared/player')
+page.replace_html "footer-holder", render("player")
+page << "document.getElementById('footer-holder').setAttribute('class', '#{@track.genre.name.parameterize}');"
+
+

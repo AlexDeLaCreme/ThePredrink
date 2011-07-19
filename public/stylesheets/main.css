@@ -99,11 +99,11 @@
 	float: right;
 	display: block;
 	width: 50px;
+	margin-top: -2px;
 }
 #footer-holder .like-btn 
 {
 	float: right;
-	background-image: url(../images/blue-ship.png);
 }
 #track-name
 {
@@ -112,6 +112,7 @@
 	font-size: 10pt;
 	display: block;
 	float: left;
+	margin-top: -2px;
 }
 BODY, HTML
 {
@@ -322,11 +323,8 @@ A.like-btn
 	background-image: url(../images/next.png);
 	float: right;
 }
-#play-button
+#controls .play-btn
 {
-	background-image: url(../images/blue-play.png);
-	width: 12px;
-	height: 12px;
 	display: block;
 	float: left;
 	margin-left: 22px;
