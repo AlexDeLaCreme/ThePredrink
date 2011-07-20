@@ -16,6 +16,10 @@ class TracksController < ApplicationController
     track = Track.find params[:id]
     track.likes << like
     track.save    
+    
+    @likes_num = track.likes.length
+       
+    Track.update_counters track.id, :likes_count => @likes_num
         
     respond_to { |format|
       format.js

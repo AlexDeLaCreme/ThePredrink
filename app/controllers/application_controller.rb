@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   @@CLIENT_ID = '481c7032a27349882e9c8b4498a34d89'
   
   def index
-    @tracks = Track.joins(:soundcloud_tracks).paginate :per_page => 20, :page => params[:page], :include => :artists
+    @tracks = Track.joins(:soundcloud_tracks).order("likes_count DESC").paginate :per_page => 20, :page => params[:page], :include => [:artists, :genre]
     
     respond_to { |format|
       format.html
