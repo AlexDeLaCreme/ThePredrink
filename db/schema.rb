@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110720100647) do
+ActiveRecord::Schema.define(:version => 20110720140626) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(:version => 20110720100647) do
     t.datetime "updated_at"
     t.integer  "soundcloud_id"
     t.integer  "track_id"
+    t.string   "stream_url"
+    t.integer  "duration"
   end
 
   create_table "tracks", :force => true do |t|
