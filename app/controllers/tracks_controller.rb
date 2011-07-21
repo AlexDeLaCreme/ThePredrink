@@ -2,8 +2,6 @@ class TracksController < ApplicationController
   
   def play
     @track = Track.find params[:id]
-    @duration =  @track.soundcloud_tracks.first.pretty_duration
-    @stream_url = @track.soundcloud_tracks.first.stream_url
     
     respond_to { |format|
       format.js
