@@ -24,6 +24,10 @@
 {
 	background-image: url(../images/blue-play.png);
 }
+.electro-house A.play-btn.playing 
+{
+	background-image: url(../images/blue-pause.png);
+}
 .electro-house A.like-btn
 {
 	background-image: url(../images/blue-ship.png);
@@ -31,6 +35,10 @@
 .dubstep A.play-btn
 {
 	background-image: url(../images/yellow-play.png);
+}
+.dubstep A.play-btn.playing 
+{
+	background-image: url(../images/yellow-pause.png);
 }
 .dubstep A.like-btn
 {
@@ -40,6 +48,10 @@
 {
 	background-image: url(../images/purple-play.png);
 }
+.progressive-house A.play-btn.playing 
+{
+	background-image: url(../images/purple-pause.png);
+}
 .progressive-house A.like-btn
 {
 	background-image: url(../images/purple-ship.png);
@@ -47,6 +59,10 @@
 .drum-bass A.play-btn
 {
 	background-image: url(../images/red-play.png);
+}
+.drum-bass A.play-btn.playing 
+{
+	background-image: url(../images/red-pause.png);
 }
 .drum-bass A.like-btn
 {
@@ -332,4 +348,35 @@ A.like-btn
 #playa 
 {
 	position: absolute;
+}
+.sc-player
+{
+	position: absolute;
+	display: none;
+	width: 0px;
+	height: 0px;
+	z-index: -1000;
+}
+.sc-player-engine-container 
+{
+	left: -5000px;
+	top: -5000px;
+	position: absolute;
+	z-index: -1000;
+}
+#progress-bar 
+{
+	margin-top: 6px;
+	margin-right: 30px;
+	float: right;
+	height: 1px;
+	border-top: solid 1px white;
+	width: 200px;
+}
+#slider
+{
+	height: 11px;
+	width: 3px;
+	background-color: white;
+	margin-top: -6px;
 }

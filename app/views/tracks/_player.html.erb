@@ -1,18 +1,33 @@
-<script type="text/javascript">
-   soundcloud.addEventListener('onPlayerReady', function(player, data) {
-   		player.api_play();
-   });
-</script>
-
 <% url = @track.soundcloud_tracks.first.url %>
 
-<object height="0" width="0" id="playa" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
-  <param name="movie" value="http://player.soundcloud.com/player.swf?url=<%= url %>&enable_api=true&object_id=playa"></param>
-  <param name="allowscriptaccess" value="always"></param>
-  <embed allowscriptaccess="always" height="0" src="http://player.soundcloud.com/player.swf?url=<%= url %>&enable_api=true&object_id=playa" type="application/x-shockwave-flash" width="0" name="playa"></embed>
-</object>
+<script type="text/javascript">
+	var playing = true;
+	jQuery('div.sc-player').scPlayer({
+	  links: [{url: "<%= url %>", title: "<%= url %>"}],
+	  autoPlay: true
+	});
+   	jQuery(document).bind('onMediaTimeUpdate.scPlayer', function(event){
+	  //console.log(event.target, 'the track is at ' + event.position + ' out of ' + event.duration + ' which is ' + event.relative + ' of the total');
+	  jQuery('#slider').css({'margin-left' : jQuery('#progress-bar').width()*event.relative});
+	});
+	soundcloud.addEventListener('onPlayerReady', function(player, data) {
+  		jQuery('#controls .play-btn').click(function() {
+  			playing = !playing;
+  			var p = playing ? player.api_play() : player.api_pause(); 
+  			var bgImg = jQuery(this).css('background-image');
+  			if (playing) {
+  				bgImg = bgImg.replace('play', 'pause');
+  			} else {
+  				bgImg = bgImg.replace('pause', 'play');
+  			}	
+  			jQuery(this).css('background-image', bgImg);
+			return false;	
+		});
+	});
+</script>
 
-<div id="controls"><a href="" id="prev-button"></a><%= link_to "", "/tracks/play/#{@track.id}", :class => "play-btn", :remote => true %><a href="" id="next-button"></a></div>
+<div id="controls"><a href="" id="prev-button"></a><%= link_to "", "/tracks/play/#{@track.id}", :class => "play-btn playing", :remote => true %><a href="" id="next-button"></a></div>
 <span id="track-name"><%= @track.full_name %></span>
 <%= link_to "", "/tracks/like/#{@track.id}", :id => "like-button", :class => "like-btn", :remote => true %>
 <span id="track-duration"><%= @track.soundcloud_tracks.first.pretty_duration %></span>
+<div id="progress-bar"><div id="slider"></div></div>
