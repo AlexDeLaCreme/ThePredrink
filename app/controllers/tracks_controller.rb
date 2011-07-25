@@ -10,17 +10,25 @@ class TracksController < ApplicationController
   end
   
   def like
-    like = Like.new
-    like.IP = request.remote_ip
-    like.save
+    # check for like for this track from this IP in the last 24 hours
+    already_likes = Like.find(:all, :limit => 1, :conditions => {:IP => request.remote_ip, :track_id => params[:id], :created_at => 24.hours.ago..DateTime.now}).count
     
-    track = Track.find params[:id]
-    track.likes << like
-    track.save    
+    logger.debug already_likes.inspect
     
-    @likes_num = track.likes.length
-       
-    Track.update_counters track.id, :likes_count => @likes_num
+    if already_likes == 0
+      # the track has not been liked by this IP in the last 24 hrs -- add a new like
+      like = Like.new
+      like.IP = request.remote_ip
+      like.save
+     
+      track = Track.find params[:id]
+      track.likes << like
+      track.save    
+     
+      @likes_num = track.likes.length
+        
+      Track.update_counters track.id, :likes_count => @likes_num        
+    end
         
     respond_to { |format|
       format.js
