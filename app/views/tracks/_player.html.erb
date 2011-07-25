@@ -7,7 +7,6 @@
 	  autoPlay: true
 	});
    	jQuery(document).bind('onMediaTimeUpdate.scPlayer', function(event){
-	  //console.log(event.target, 'the track is at ' + event.position + ' out of ' + event.duration + ' which is ' + event.relative + ' of the total');
 	  jQuery('#slider').css({'margin-left' : jQuery('#progress-bar').width()*event.relative});
 	});
 	soundcloud.addEventListener('onPlayerReady', function(player, data) {
@@ -23,6 +22,10 @@
   			jQuery(this).css('background-image', bgImg);
 			return false;	
 		});
+	});
+	soundcloud._listeners.onMediaEnd.clear();
+	soundcloud.addEventListener('onMediaEnd', function(player, data) {
+		jQuery.get("/tracks/play/<%= @track.next(@genre_id).id %>?format=js&genre_id=<%= @genre_id %>");
 	});
 </script>
 
