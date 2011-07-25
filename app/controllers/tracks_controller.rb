@@ -2,6 +2,7 @@ class TracksController < ApplicationController
   
   def play
     @track = Track.find params[:id]
+    @genre_id = params[:genre_id]
     
     respond_to { |format|
       format.js
@@ -24,5 +25,11 @@ class TracksController < ApplicationController
     respond_to { |format|
       format.js
     }
+  end
+  
+  def next
+  end
+  
+  def previous
   end
 end

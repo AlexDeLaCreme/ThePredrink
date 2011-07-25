@@ -26,7 +26,10 @@
 	});
 </script>
 
-<div id="controls"><a href="" id="prev-button"></a><%= link_to "", "/tracks/play/#{@track.id}", :class => "play-btn playing", :remote => true %><a href="" id="next-button"></a></div>
+<div id="controls">
+	<%= link_to "", "/tracks/play/#{@track.previous(@genre_id).id}?genre_id=#{@genre_id}", :id => "prev-button", :remote => true %>
+	<%= link_to "", "/tracks/play/#{@track.id}?genre_id=#{@genre_id}", :class => "play-btn playing", :remote => true %>
+	<%= link_to "", "/tracks/play/#{@track.next(@genre_id).id}?genre_id=#{@genre_id}", :id => "next-button", :remote => true %></div>
 <span id="track-name"><%= @track.full_name %></span>
 <%= link_to "", "/tracks/like/#{@track.id}", :id => "like-button", :class => "like-btn", :remote => true %>
 <span id="track-duration"><%= @track.soundcloud_tracks.first.pretty_duration %></span>

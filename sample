@@ -1,0 +1,28 @@
+= AArrrraayy  <<  OObbjjeecctt
+
+(from gem activesupport-3.0.9)
+------------------------------------------------------------------------------
+= CCllaassss  mmeetthhooddss::
+
+  wrap
+
+= IInnssttaannccee  mmeetthhooddss::
+
+  extract_options!, fifth, forty_two, fourth, from, in_groups, in_groups_of,
+  sample, second, split, third, to, to_default_s, to_formatted_s, to_param,
+  to_query, to_s, to_sentence, to_xml, uniq_by, uniq_by!
+
+
+(from gem sequel-3.20.0)
+------------------------------------------------------------------------------
+Sequel extends Array to add methods to implement the SQL DSL. Most of these
+methods require that the array not be empty and that it must consist solely of
+other arrays that have exactly two elements.
+
+------------------------------------------------------------------------------
+= IInnssttaannccee  mmeetthhooddss::
+
+  all_two_pairs?, case, sql_array, sql_expr, sql_negate, sql_or,
+  sql_string_join, sql_value_list, ~
+
+
