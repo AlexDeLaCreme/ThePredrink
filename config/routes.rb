@@ -7,6 +7,7 @@ ThePredrink::Application.routes.draw do
  
   # Keep in mind you can assign values other than :controller and :action
   match '/update' => 'application#update_db'
+  match '/clean' => 'application#clean_db'
   match '/sc' => 'application#sc'
 
   match '/tracks/play/:id' => 'tracks#play'
