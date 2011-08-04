@@ -30,7 +30,7 @@
 }
 .electro-house A.like-btn
 {
-	background-image: url(../images/blue-ship.png);
+	background-image: url(../images/blue-like.png);
 }
 .dubstep A.play-btn
 {
@@ -42,7 +42,7 @@
 }
 .dubstep A.like-btn
 {
-	background-image: url(../images/yellow-ship.png);
+	background-image: url(../images/yellow-like.png);
 }
 .progressive-house A.play-btn
 {
@@ -54,7 +54,7 @@
 }
 .progressive-house A.like-btn
 {
-	background-image: url(../images/purple-ship.png);
+	background-image: url(../images/purple-like.png);
 }
 .drum-bass A.play-btn
 {
@@ -66,7 +66,7 @@
 }
 .drum-bass A.like-btn
 {
-	background-image: url(../images/red-ship.png);
+	background-image: url(../images/red-like.png);
 }
 
 /*+clearfix {*/
@@ -120,6 +120,7 @@
 #footer-holder .like-btn 
 {
 	float: right;
+	margin-top: -2px;
 }
 #track-name
 {
@@ -133,7 +134,8 @@
 BODY, HTML
 {
 	margin: 0;
-	background-color: #111111;
+	/*background-color: #111111;*/
+	background-image: url(../images/bg.jpg);
 }
 #sidebar
 {
@@ -143,34 +145,47 @@ BODY, HTML
 	position: absolute;
 	left: 0px;
 }
+#what-is 
+{
+	width: 200px;
+	height: 130px;
+	background-image: url(../images/what-is.jpg);
+	margin: 10px auto 0px;
+}
+#spread-word
+{
+	width: 200px;
+	height: 116px;
+	background-image: url(../images/spread-word.jpg);
+	margin: 20px auto 0px;
+}
+#fb-widget
+{
+	width: 197px;
+	height: 361px;
+	margin: 20px auto 0px;
+	padding: 0 0 0 0;
+	background-image: url(../images/line2.png);
+}
+#fb-widget img
+{
+	margin-top: 2px;
+}
 #facebook, #tweeter
 {
 	width: 54px;
 	height: 61px;
 	position: absolute;
-	margin-top: 24px;
+	margin-top: 40px;
 }
-P#info
+#facebook
 {
-	text-align: center;
-	color: #FFF;
-	font-family: Arial, sans-serif;
-	font-size: 7pt;
-	text-transform: uppercase;
-	margin-top: 23px;
+	margin-left: 36px;
 }
-P#info .gray
+#tweeter
 {
-	color: #818181;
-}
-#line
-{
-	margin-left: 67px;
-	margin-top: 34px;
-}
-#space-man
-{
-	margin: 25px auto 0 57px;
+	margin-left: 110px;
+	margin-top: 40px;
 }
 #main-content
 {
@@ -186,7 +201,7 @@ P#info .gray
 	font-size: 8pt;
 	width: 100px;
 	position: absolute;
-	bottom: 80px;
+	bottom: 40px;
 	left: 50%;
 	margin-left: 50px;
 }
@@ -206,24 +221,39 @@ P#info .gray
 }
 #tracks
 {
+	position: static;
+	z-index: 1;
 	list-style: none;
 	padding: 0;
 }
 /*[clearfix]*/#select-by
 {
-	color: #818181;
+	z-index: 1000;
+	list-style-type: none;
 	font-family: Arial, sans-serif;
-	font-size: 8pt;
-	text-align: right;
+	font-size: 9pt;
+	text-align: left;
 	margin-top: 26px;
+	right: 30px;
+	margin-top: -10px;
+	height: 25px;
+	overflow: hidden;
+	position: absolute;
+	/*background-color: black;*/
+	padding: 0 0 0 0;
 }
-#select-by UL
+#select-by li 
 {
-	list-style: none;
-	float: right;
-	border: 1px solid #AE9C9C;
-	display: inline;
-	color: #FFFFFF;
+	padding: 6px 10px 0px 10px;
+	width: 70px;
+	height: 22px;
+	/*background-color: black;*/
+}
+#select-by li:first-child
+{
+	background-image: url(../images/down-arrow.png);
+	background-position: 95% center;
+	background-repeat: no-repeat;
 }
 #select-by A
 {
@@ -234,41 +264,47 @@ P#info .gray
 {
 	border-bottom: 1px solid #2F2F2F;
 	width: 100%;
+	height: 50px;
 	padding-bottom: 5px;
+	margin-bottom: 15px;
 }
-#header #logo
+#header a 
 {
-	float: left;
+	width: 274px;
+	height: 48px;
+	margin: 0 auto;
+	display: block;
 }
-#header #genres
+ul#genres
 {
+	padding: 0 0 0 0;
 	color: #FFF;
 	font-family: Arial, sans-serif;
-	font-size: 7pt;
-	position: absolute;
-	right: 30px;
-	margin-top: 32px;
+	font-size: 9pt;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin: 0 auto;
+	display: block;
+	width: 515px;
 }
-#header #genres A
+#genres A
 {
 	text-decoration: none;
 }
-#facebook
+#genres LI:first-child A
 {
-	margin-left: 54px;
+	color: white;
 }
-#tweeter
-{
-	margin-left: 128px;
-	margin-top: 26px;
-}
-#header #genres A:hover
+#genres A:hover
 {
 	text-decoration: underline;
 }
 #genres LI
 {
+	padding: 3px 7px;
+	background-color: black;
 	list-style-type: none;
+	margin-right: 5px;
 	display: inline;
 }
 #select-by A:hover
@@ -279,16 +315,24 @@ P#info .gray
 {
 	background-color: #000;
 	width: 100%;
-	height: 12px;
+	height: 17px;
 	margin-bottom: 2px;
-	padding-left: 5px;
-	padding-top: 4px;
+	padding-top: 6px;
 	padding-bottom: 5px;
 	color: #FFFFFF;
 	font-family: Arial, sans-serif;
-	font-size: 8pt;
-	background-repeat: no-repeat;
-	background-position: 99% 50%;
+	font-size: 11pt;
+	border: solid 1px #1a1a1a;
+	cursor: pointer;
+	opacity: .5;
+}
+#tracks LI A.track
+{
+	color: white;
+	text-decoration: none;
+	width: 93%;
+	display: block;
+	float: left;
 }
 A.play-btn
 {
@@ -299,15 +343,17 @@ A.play-btn
 }
 A.like-btn
 {
-	width: 15px;
-	height: 14px;
+	width: 16px;
+	height: 16px;
 	display: block;
 	text-decoration: none;
 	border: none;
 }
 #tracks LI A.play-btn
 {
-	margin-right: 24px;
+	margin-right: 20px;
+	margin-top: 2px;
+	margin-left: 8px;
 	float: left;
 }
 #tracks LI A.like-btn

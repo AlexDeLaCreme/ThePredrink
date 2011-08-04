@@ -16,25 +16,23 @@
 		<a href="http://soundcloud.com/matas/hobnotropic">My dub track</a>
 	</div>
 	<div id="sidebar">
-    	<%= image_tag "space-man.png", :id = 'space-man' %>
-    	<%= image_tag "line.png", :id => 'line' %>
-        <p id="info">THE INTERNETS TOP 50<br /> 
-					<span class="gray">.ELECTRO HOUSE<br />
-					.DUBSTEP .<br />
-					.PROGRESSIVE HOUSE .<br />
-                    .DRUM &amp; BASS</span><br />
-                    SOURCES COMPILED INTO<br />
-                    1 DIRTY MUSIC PLAYER!
-        </p>
-        <!-- <div id="facebook"><%= image_tag "share-bubble.png" %><%= image_tag "share.png" %></div>
-        <div id="tweeter"><%= image_tag "tweet-bubble.png" %><%= image_tag "tweet.png" %></div> -->
+        <div id="what-is"></div>
+        <div id="spread-word">
+        	<div id="facebook"><%= image_tag "share-bubble.png" %><%= image_tag "share.png" %></div>
+        	<div id="tweeter"><%= image_tag "tweet-bubble.png" %><%= image_tag "tweet.png" %></div>
+        </div>
+        <div id="fb-widget"><%= image_tag "fb-widget.jpg" %></div>
     </div>
     <div id="main-content">
     	<div id="header">
-        	<%= link_to (image_tag "the-predrink.png", :id => 'logo'), root_path %>
-        	<%= render "shared/genres" %>            
+        	<%= link_to (image_tag "the-predrink2.png", :id => 'logo'), root_path %>	            
         </div>
-        <!-- <div id="select-by">Popular: <a href="">This Week</a> | <a href="">This Month</a> | <a href="">All Time</a></div> -->
+        <%= render "shared/genres" %>
+        <ul id="select-by">
+        	<li><%= link_to "This Week", "" %></li>
+        	<li><%= link_to "This Month", "" %></li>
+        	<li><%= link_to "All Time", "" %></li>
+		</ul>
         <div id="tracklist">
         	<%= yield %>
         </div>
