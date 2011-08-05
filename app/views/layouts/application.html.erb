@@ -29,9 +29,9 @@
         </div>
         <%= render "shared/genres" %>
         <ul id="select-by">
-        	<li><%= link_to "This Week", "" %></li>
-        	<li><%= link_to "This Month", "" %></li>
-        	<li><%= link_to "All Time", "" %></li>
+        	<li><%= link_to "This Week", "#{PATH_PREFIX}/?show=this-week", :remote => true %></li>
+        	<li><%= link_to "This Month", "#{PATH_PREFIX}/?show=this-month", :remote => true %></li>
+        	<li><%= link_to "All Time", "#{PATH_PREFIX}/?show=all-time", :remote => true %></li>
 		</ul>
         <div id="tracklist">
         	<%= yield %>

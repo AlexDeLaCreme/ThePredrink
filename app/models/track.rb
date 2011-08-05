@@ -9,34 +9,22 @@ class Track < ActiveRecord::Base
     "#{self.artists.collect(&:name).join(', ')} - #{self.name} (#{self.mix_name})"
   end
   
-  def next genre_id = nil
-    if genre_id.nil? || genre_id.empty?
-      tracks = Track.find(:all, :select => "tracks.id", :joins => :soundcloud_tracks, :order => "likes_count DESC")
-    else
-      tracks = Track.find(:all, :select => "tracks.id", :joins => :soundcloud_tracks, :order => "likes_count DESC", :conditions => ["genre_id = ?", genre_id])
-    end
-    ids = tracks.collect(&:id)
+  def next_id ids
     i = ids.index self.id
-    logger.debug i.inspect
     if i == ids.size-1
-      Track.find ids.first
+      ids.first
     else
-      Track.find ids[i+1]    
+      ids[i+1]
     end
   end
   
-  def previous genre_id = nil
-    if genre_id.nil? || genre_id.empty?
-      tracks = Track.find(:all, :select => "tracks.id", :joins => :soundcloud_tracks, :order => "likes_count DESC")
-    else
-      tracks = Track.find(:all, :select => "tracks.id", :joins => :soundcloud_tracks, :order => "likes_count DESC", :conditions => ["genre_id = ?", genre_id])
-    end
-    ids = tracks.collect(&:id)
+  def prev_id ids
     i = ids.index self.id
     if i == 0
-      Track.find ids.last
+      ids.last
     else
-      Track.find ids[i-1]    
+      ids[i-1]
     end
-  end
+  end  
+  
 end

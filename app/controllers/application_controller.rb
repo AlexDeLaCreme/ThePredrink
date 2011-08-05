@@ -8,11 +8,32 @@ class ApplicationController < ActionController::Base
   @@CLIENT_ID = '481c7032a27349882e9c8b4498a34d89'
 
   def index
-    @tracks = Track.joins(:soundcloud_tracks).order("likes_count DESC").paginate :per_page => 18, :page => params[:page], :include => [:artists, :genre]
-
+    params[:show] ||= 'last-update'
+    
+    case params[:show]
+    when 'this-week'
+      @tracks = Track.joins(:soundcloud_tracks, :likes).select("tracks.*, COUNT(tracks.id) AS likes_this_week").group("tracks.id").paginate :per_page => 18, :page => params[:page], :order => 'likes_this_week DESC', :conditions => ["likes.created_at > ?", 1.week.ago], :include => [:artists, :genre, :likes]
+      all_tracks = Track.find :all, :joins => [:soundcloud_tracks, :likes], :select => "tracks.*, COUNT(tracks.id) AS likes_this_week", :group => "tracks.id", :order => 'likes_this_week DESC', :conditions => ["likes.created_at > ?", 1.week.ago], :include => [:artists, :genre, :likes]
+    when 'this-month'
+      @tracks = Track.joins(:soundcloud_tracks, :likes).select("tracks.*, COUNT(tracks.id) AS likes_this_month").group("tracks.id").paginate :per_page => 18, :page => params[:page], :order => 'likes_this_month DESC', :conditions => ["likes.created_at > ?", 1.month.ago], :include => [:artists, :genre, :likes]
+      all_tracks = Track.find :all, :joins => [:soundcloud_tracks, :likes], :select => "tracks.*, COUNT(tracks.id) AS likes_this_month", :group => "tracks.id", :order => 'likes_this_month DESC', :conditions => ["likes.created_at > ?", 1.month.ago], :include => [:artists, :genre, :likes]
+    when 'all-time'
+      @tracks = Track.joins(:soundcloud_tracks).order("likes_count DESC").paginate :per_page => 18, :page => params[:page], :include => [:artists, :genre]
+      all_tracks = Track.find :all, :joins => :soundcloud_tracks, :order => "likes_count DESC", :include => [:artists, :genre]
+    else
+      @tracks = Track.joins(:soundcloud_tracks).order("likes_count DESC").paginate :per_page => 18, :page => params[:page], :conditions => ["tracks.updated_at > ?", 2.days.ago], :include => [:artists, :genre]
+      all_tracks = Track.find :all, :joins => :soundcloud_tracks, :order => "likes_count DESC", :conditions => ["tracks.updated_at > ?", 2.days.ago], :include => [:artists, :genre]
+    end
+    
+    session[:tracks] = all_tracks.collect &:id
+    
     respond_to { |format|
       format.html
-      format.js
+      format.js {
+        render :update do |page|
+          page.replace_html :tracklist, render("index")
+        end
+      }
     }
   end
 
@@ -21,9 +42,6 @@ class ApplicationController < ActionController::Base
     Track.delete_all
     Artist.delete_all
     SoundcloudTrack.delete_all
-  end
-
-  def update_db
   end
 
   def sc

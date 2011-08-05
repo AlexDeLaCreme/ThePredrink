@@ -34,7 +34,7 @@ task :update_db => :environment do
             
             Track.record_timestamps = false
             
-            t = Track.find(track[:id])
+            t = Track.find_by_beatport_track_id(track[:id])
             t.updated_at = Time.now
             t.save
             
@@ -60,6 +60,8 @@ task :update_db => :environment do
                 l.save
                 t.likes << l
               end
+              
+              t.likes_count = 5
             end
     
             # add artists if needed

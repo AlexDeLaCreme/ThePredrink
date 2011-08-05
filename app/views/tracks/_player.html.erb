@@ -25,14 +25,14 @@
 	});
 	soundcloud._listeners.onMediaEnd.clear();
 	soundcloud.addEventListener('onMediaEnd', function(player, data) {
-		jQuery.get("<%= PATH_PREFIX %>/tracks/play/<%= @track.next(@genre_id).id %>?format=js&genre_id=<%= @genre_id %>");
+		jQuery.get("<%= PATH_PREFIX %>/tracks/play/<%= @track.next_id(session[:tracks]) %>?format=js&genre_id=<%= @genre_id %>");
 	});
 </script>
 
 <div id="controls">
-	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.previous(@genre_id).id}?genre_id=#{@genre_id}", :id => "prev-button", :remote => true %>
+	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.prev_id(session[:tracks])}?genre_id=#{@genre_id}", :id => "prev-button", :remote => true %>
 	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.id}?genre_id=#{@genre_id}", :class => "play-btn playing", :remote => true %>
-	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.next(@genre_id).id}?genre_id=#{@genre_id}", :id => "next-button", :remote => true %></div>
+	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.next_id(session[:tracks])}?genre_id=#{@genre_id}", :id => "next-button", :remote => true %></div>
 <span id="track-name"><%= @track.full_name %></span>
 <%= link_to "", "#{PATH_PREFIX}/tracks/like/#{@track.id}", :id => "like-button", :class => "like-btn", :remote => true %>
 <span id="track-duration"><%= @track.soundcloud_tracks.first.pretty_duration %></span>

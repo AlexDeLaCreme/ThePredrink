@@ -6,9 +6,7 @@ ThePredrink::Application.routes.draw do
   #   match 'products/:id' => 'catalog#view'
  
   # Keep in mind you can assign values other than :controller and :action
-  match '/update' => 'application#update_db'
   match '/clean' => 'application#clean_db'
-  match '/sc' => 'application#sc'
 
   match '/tracks/play/:id' => 'tracks#play'
   match '/tracks/like/:id' => 'tracks#like'

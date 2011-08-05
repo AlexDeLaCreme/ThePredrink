@@ -3,6 +3,7 @@ class TracksController < ApplicationController
   def play
     @track = Track.find params[:id]
     @genre_id = params[:genre_id]
+    @show = params[:show] || 'last-update'
     
     respond_to { |format|
       format.js
