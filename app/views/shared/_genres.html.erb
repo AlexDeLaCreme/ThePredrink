@@ -1,5 +1,5 @@
 <ul id="genres">
-	<li><%= link_to "All", root_path %></li>
+	<li><%= link_to "All", root_path, :remote => true %></li>
 	<% Genre.all.each { |genre| %>
 		<li><%= link_to genre.name.upcase, genre_path(genre), :class => genre.name.parameterize, :remote => true %></li> 
 	<% } %>

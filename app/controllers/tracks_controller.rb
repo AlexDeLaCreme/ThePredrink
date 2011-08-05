@@ -32,7 +32,13 @@ class TracksController < ApplicationController
     end
         
     respond_to { |format|
-      format.js
+      format.js { 
+        if already_likes == 0 
+          render :update do |page|
+            page << "var t = jQuery('#track-#{params[:id]} a.track').text(); jQuery('#track-#{params[:id]} a.track').text(t + ' + 1');"
+          end
+        end
+      }
     }
   end
   

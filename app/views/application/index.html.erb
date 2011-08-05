@@ -1,6 +1,15 @@
 <ul id="tracks">
 	 <% for track in @tracks %>
-		<li class="<%= track.genre.name.parameterize %>"><%= link_to "", "#{PATH_PREFIX}/tracks/play/#{track.id}", :class => "play-btn", :remote => true %><%= link_to track.full_name, "#{PATH_PREFIX}/tracks/play/#{track.id}", :class => 'track', :remote => true %><%= link_to "", "#{PATH_PREFIX}/tracks/like/#{track.id}", :class => "like-btn", :remote => true %></li>
+		<li class="<%= track.genre.name.parameterize %>" id="track-<%= track.id %>"><%= link_to( "", "#{PATH_PREFIX}/tracks/play/#{track.id}", :class => "play-btn", :remote => true, :title => "Play track") %><%= link_to( track.full_name, "#{PATH_PREFIX}/tracks/play/#{track.id}", :class => 'track', :remote => true, :title => "Play track") %><%= link_to "", "#{PATH_PREFIX}/tracks/like/#{track.id}", :class => "like-btn", :remote => true, :title => "I like this track" %></li>
 	<% end %>
 </ul>
 <div id="pagination"><%= will_paginate @tracks, :previous_label => '', :next_label => '' %></div>
+
+<script type="text/javascript">
+	<% unless session[:current_playing_id].nil? %>
+		jQuery(document).ready(function() {
+			jQuery('#track-<%= session[:current_playing_id] %>').fadeTo('fast', .5);
+			jQuery('#track-<%= session[:current_playing_id] %>').bind('mouseout', mouseOut);
+		});	
+	<% end %>	
+</script>

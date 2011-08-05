@@ -32,6 +32,10 @@ class ApplicationController < ActionController::Base
       format.js {
         render :update do |page|
           page.replace_html :tracklist, render("index")
+          page << "updateTrackMouseOvers();"
+          unless session[:current_playing_id].nil?
+            page << "jQuery('#track-#{session[:current_playing_id]}').fadeTo('fast', 1); jQuery('#track-#{session[:current_playing_id]}').unbind('mouseout', mouseOut);"
+          end  
         end
       }
     }

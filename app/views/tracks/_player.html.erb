@@ -27,13 +27,22 @@
 	soundcloud.addEventListener('onMediaEnd', function(player, data) {
 		jQuery.get("<%= PATH_PREFIX %>/tracks/play/<%= @track.next_id(session[:tracks]) %>?format=js&genre_id=<%= @genre_id %>");
 	});
+	
+	// update track highlight & make the MouseOut work for it again
+	<% unless session[:current_playing_id].nil? %>
+		jQuery('#track-<%= session[:current_playing_id] %>').fadeTo('fast', .5);
+		jQuery('#track-<%= session[:current_playing_id] %>').bind('mouseout', mouseOut);
+	<% end %>
+	<% session[:current_playing_id] = @track.id %>
+	jQuery('#track-<%= session[:current_playing_id] %>').fadeTo('fast', 1);
+	jQuery('#track-<%= session[:current_playing_id] %>').unbind('mouseout', mouseOut);
 </script>
 
 <div id="controls">
-	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.prev_id(session[:tracks])}?genre_id=#{@genre_id}", :id => "prev-button", :remote => true %>
-	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.id}?genre_id=#{@genre_id}", :class => "play-btn playing", :remote => true %>
-	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.next_id(session[:tracks])}?genre_id=#{@genre_id}", :id => "next-button", :remote => true %></div>
+	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.prev_id(session[:tracks])}?genre_id=#{@genre_id}", :id => "prev-button", :remote => true, :title => "Previous track" %>
+	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.id}?genre_id=#{@genre_id}", :class => "play-btn playing", :remote => true, :title => "Play/pause track" %>
+	<%= link_to "", "#{PATH_PREFIX}/tracks/play/#{@track.next_id(session[:tracks])}?genre_id=#{@genre_id}", :id => "next-button", :remote => true, :title => "Next track" %></div>
 <span id="track-name"><%= @track.full_name %></span>
-<%= link_to "", "#{PATH_PREFIX}/tracks/like/#{@track.id}", :id => "like-button", :class => "like-btn", :remote => true %>
+<%= link_to "", "#{PATH_PREFIX}/tracks/like/#{@track.id}", :id => "like-button", :class => "like-btn", :remote => true, :title => "I like this track" %>
 <span id="track-duration"><%= @track.soundcloud_tracks.first.pretty_duration %></span>
 <div id="progress-bar"><div id="slider"></div></div>

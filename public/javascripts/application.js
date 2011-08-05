@@ -17,13 +17,21 @@ document.observe("dom:loaded", function() {
   }
 })
 
+function mouseOver() {
+	jQuery(this).fadeTo('fast', 1);
+}
+
+function mouseOut() {
+	jQuery(this).fadeTo('fast', .5);
+}
+
+function updateTrackMouseOvers() {
+	jQuery('#tracks li').mouseover(mouseOver);
+	jQuery('#tracks li').mouseout(mouseOut);
+}
+
 jQuery(document).ready(function() {
-	jQuery('#tracks li').mouseover(function() {
-		jQuery(this).fadeTo('fast', 1);
-	});
-	jQuery('#tracks li').mouseout(function() {
-		jQuery(this).fadeTo('fast', .5);
-	});
+	updateTrackMouseOvers();
 	jQuery('#select-by li').mouseover(function() {
 		jQuery('#select-by').css('overflow', 'visible');
 		jQuery('#select-by li').css('background-color', 'black');
@@ -33,5 +41,5 @@ jQuery(document).ready(function() {
 		jQuery(this).css('overflow', 'hidden');
 		jQuery(this).css('background-color', 'transparent');
 		jQuery('#select-by li').css('background-color', 'transparent');
-	});	
+	});
 });
