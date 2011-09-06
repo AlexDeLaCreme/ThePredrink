@@ -14,7 +14,11 @@ class TracksController < ApplicationController
     # check for like for this track from this IP in the last 24 hours
     already_likes = Like.find(:all, :limit => 1, :conditions => {:IP => request.remote_ip, :track_id => params[:id], :created_at => 24.hours.ago..DateTime.now}).count
     
-    logger.debug already_likes.inspect
+    # logger.debug already_likes.inspect
+    
+    track = Track.find params[:id]
+    
+    @likes_num = track.likes.length
     
     if already_likes == 0
       # the track has not been liked by this IP in the last 24 hrs -- add a new like
@@ -22,7 +26,6 @@ class TracksController < ApplicationController
       like.IP = request.remote_ip
       like.save
      
-      track = Track.find params[:id]
       track.likes << like
       track.save    
      
@@ -35,7 +38,11 @@ class TracksController < ApplicationController
       format.js { 
         if already_likes == 0 
           render :update do |page|
-            page << "var t = jQuery('#track-#{params[:id]} a.track').text(); jQuery('#track-#{params[:id]} a.track').text(t + ' + 1');"
+            # page << "var t = jQuery('#track-#{params[:id]} a.track').text(); jQuery('#track-#{params[:id]} a.track').text(t + ' + 1');"
+            # update likes count
+            page << "jQuery('#track-#{params[:id]} .likes-count').text('#{pluralize(@likes_num, 'like')}');"
+            # say 'you liked this'
+            page << "jQuery('#track-#{params[:id]} .you-liked-this').css('display', 'inline-block');"
           end
         end
       }

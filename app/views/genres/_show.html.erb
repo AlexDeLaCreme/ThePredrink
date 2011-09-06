@@ -1,6 +1,4 @@
 <ul id="tracks" class="<%= @genre.name.parameterize %>">
-	 <% for track in @tracks %>
-		<li id="track-<%= track.id %>" ><%= link_to("", "#{PATH_PREFIX}/tracks/play/#{track.id}?genre_id=#{@genre.id}", :class => "play-btn", :remote => true, :title => "Play track") %><%= link_to(track.full_name, "#{PATH_PREFIX}/tracks/play/#{track.id}?genre_id=#{@genre.id}", :class => 'track', :remote => true, :title => "Play track") %><%= link_to "", "#{PATH_PREFIX}/tracks/like/#{track.id}", :class => "like-btn", :remote => true, :title => "I like this track" %></li>
-	<% end %>
+	 <%= render :partial => 'shared/track', :collection => @tracks, :locals => {:genre_id => @genre.id} %>
 </ul>
 <div id="pagination"><%= will_paginate @tracks, :previous_label => '', :next_label => '' %></div>

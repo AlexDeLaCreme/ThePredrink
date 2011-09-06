@@ -13,8 +13,9 @@ class GenresController < ApplicationController
         render :update do |page|
           page.replace_html :tracklist, render("show")
           page << "updateTrackMouseOvers();"
+          page << "setDash('#{@genre.name.parameterize}');"
           unless session[:current_playing_id].nil?
-            page << "jQuery('#track-#{session[:current_playing_id]}').fadeTo('fast', 1); jQuery('#track-#{session[:current_playing_id]}').unbind('mouseout', mouseOut);"
+            page << "jQuery('#track-#{session[:current_playing_id]}').fadeTo('fast', 1); jQuery('#track-#{session[:current_playing_id]}').unbind('mouseleave', mouseLeave);"
           end  
         end
       }

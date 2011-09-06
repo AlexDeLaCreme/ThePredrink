@@ -6,7 +6,11 @@ class Track < ActiveRecord::Base
   has_and_belongs_to_many :artists
   
   def full_name
-    "#{self.artists.collect(&:name).join(', ')} - #{self.name} (#{self.mix_name})"
+    "#{artists.collect(&:name).join(', ')} - #{name} (#{mix_name})"
+  end
+  
+  def liked?(ip)
+    Like.select("id").where(:track_id => id, :ip => ip).size > 0
   end
   
   def next_id ids

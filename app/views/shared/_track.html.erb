@@ -1,0 +1,7 @@
+<li id="track-<%= track.id %>" class="<%= track.genre.name.parameterize %>">
+	<%= link_to("", "#{PATH_PREFIX}/tracks/play/#{track.id}?genre_id=#{genre_id}", :class => "play-btn", :remote => true, :title => "Play track") %>
+	<%= link_to(track.full_name, "#{PATH_PREFIX}/tracks/play/#{track.id}?genre_id=#{genre_id}", :class => 'track', :remote => true, :title => "Play track") %>
+	<%= link_to "", "#{PATH_PREFIX}/tracks/like/#{track.id}", :class => "like-btn", :remote => true, :title => "I like this track" %>
+	<span class="you-liked-this" <% if track.liked?(request.remote_ip) %>style="display: inline-block"<% end %>>you liked this</span>
+	<span class="likes-count <%= track.genre.name.parameterize %>"><%= pluralize track.likes.length, 'like' %></span>
+</li>

@@ -19,15 +19,22 @@ document.observe("dom:loaded", function() {
 
 function mouseOver() {
 	jQuery(this).fadeTo('fast', 1);
+	jQuery(this).find('.likes-count').css('display', 'inline-block');
 }
 
-function mouseOut() {
+function mouseLeave() {
 	jQuery(this).fadeTo('fast', .5);
+	jQuery(this).find('.likes-count').css('display', 'none');
 }
 
 function updateTrackMouseOvers() {
 	jQuery('#tracks li').mouseover(mouseOver);
-	jQuery('#tracks li').mouseout(mouseOut);
+	jQuery('#tracks li').mouseleave(mouseLeave);
+}
+
+function setDash(dashClass) {
+	jQuery('.dash').hide();
+	jQuery('.dash-' + dashClass).show();
 }
 
 jQuery(document).ready(function() {

@@ -7,6 +7,8 @@
 <%= javascript_include_tag "jquery-1.6.2.min" %>
 <%= javascript_include_tag "soundcloud.player.api" %>
 <%= javascript_include_tag "sc-player" %>
+<%= javascript_include_tag "analytics" %>
+<%= javascript_include_tag "http://platform.twitter.com/widgets.js" %>
 <%= javascript_include_tag :defaults %>
 <%= csrf_meta_tag %>
 </head>
@@ -18,20 +20,24 @@
 	<div id="sidebar">
         <div id="what-is"></div>
         <div id="spread-word">
-        	<div id="facebook"><%= image_tag "share-bubble.png" %><%= image_tag "share.png" %></div>
-        	<div id="tweeter"><%= image_tag "tweet-bubble.png" %><%= image_tag "tweet.png" %></div>
+        	<div id="facebook"><div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=231275543582742&amp;xfbml=1"></script><fb:like href="http://www.thepredrink.com" send="false" layout="box_count" width="450" show_faces="true" action="like" font=""></fb:like></div>
+        	<div id="tweeter"><a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a></div>
         </div>
-        <div id="fb-widget"><%= image_tag "fb-widget.jpg" %></div>
+        <div id="fb-widget">
+        	<div id="iframe-wrapper">
+        		<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2Fthepredrinkcom%2F115552505209103&amp;width=197&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=true&amp;height=427" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:197px; height:427px;" allowTransparency="false"></iframe>
+        	</div>
+        </div>
     </div>
     <div id="main-content">
     	<div id="header">
-        	<%= link_to (image_tag "the-predrink2.png", :id => 'logo'), root_path %>	            
+        	<%= link_to (image_tag "the-predrink3.png", :id => 'logo'), root_path %>	            
         </div>
         <%= render "shared/genres" %>
         <ul id="select-by">
-        	<li><%= link_to "This Week", "#{PATH_PREFIX}/?show=this-week", :remote => true %></li>
-        	<li><%= link_to "This Month", "#{PATH_PREFIX}/?show=this-month", :remote => true %></li>
-        	<li><%= link_to "All Time", "#{PATH_PREFIX}/?show=all-time", :remote => true %></li>
+        	<li><%= link_to "New This Week", "#{PATH_PREFIX}/?show=this-week", :remote => true %></li>
+        	<li><%= link_to "Top This Month", "#{PATH_PREFIX}/?show=this-month", :remote => true %></li>
+        	<li><%= link_to "Top All Time", "#{PATH_PREFIX}/?show=all-time", :remote => true %></li>
 		</ul>
         <div id="tracklist">
         	<%= yield %>

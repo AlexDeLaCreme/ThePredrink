@@ -17,6 +17,30 @@
 {
 	color: #B68316; /* yellow */
 }
+.dash-drum-bass 
+{
+	background-color: #A20014 !important; /* red */
+	display: none;
+}
+.dash-electro-house
+{
+	background-color: #1084B3 !important; /* blue */
+	display: none;
+}
+.dash-progressive-house
+{
+	background-color: #8A67A9 !important; /* purple */
+	display: none;
+}
+.dash-dubstep
+{
+	background-color: #B68316 !important; /* yellow */
+	display: none;
+}
+.dash-all
+{
+	background-color: white;
+}
 
 /* genre-specific buttons */
 
@@ -97,7 +121,7 @@
 	background-color: #000;
 	background-image: url(../images/huge-line.png);
 	background-repeat: repeat-x;
-	position: absolute;
+	position: fixed;
 	bottom: 0px;
 	width: 100%;
 	padding-top: 8px;
@@ -164,7 +188,7 @@ BODY, HTML
 	width: 197px;
 	height: 361px;
 	margin: 20px auto 0px;
-	padding: 0 0 0 0;
+	padding: 2px 0 0 0;
 	background-image: url(../images/line2.png);
 }
 #fb-widget img
@@ -201,8 +225,9 @@ BODY, HTML
 	font-family: Arial, sans-serif;
 	font-size: 8pt;
 	width: 100px;
-	position: absolute;
-	bottom: 40px;
+	position: fixed;
+	/*bottom: 40px;*/
+	top: 753px;
 	left: 50%;
 	margin-left: 50px;
 }
@@ -246,7 +271,7 @@ BODY, HTML
 #select-by li 
 {
 	padding: 6px 10px 0px 10px;
-	width: 70px;
+	width: 100px;
 	height: 22px;
 	/*background-color: black;*/
 }
@@ -275,6 +300,9 @@ BODY, HTML
 	height: 48px;
 	margin: 0 auto;
 	display: block;
+}
+#logo {
+	border: 0px;
 }
 ul#genres
 {
@@ -307,6 +335,17 @@ ul#genres
 	list-style-type: none;
 	margin-right: 5px;
 	display: inline;
+	position: relative;
+}
+.dash 
+{
+	width: 10px;
+	height: 3px;
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	margin-left: -5px;
+	margin-top: -3px;
 }
 #select-by A:hover
 {
@@ -326,12 +365,15 @@ ul#genres
 	border: solid 1px #1a1a1a;
 	cursor: pointer;
 	opacity: .5;
+	position: relative;
 }
 #tracks LI A.track
 {
 	color: white;
 	text-decoration: none;
-	width: 93%;
+	/*width: 93%;*/
+	margin-left: 40px;
+	position: absolute;
 	display: block;
 	float: left;
 }
@@ -352,7 +394,7 @@ A.like-btn
 }
 #tracks LI A.play-btn
 {
-	margin-right: 20px;
+	
 	margin-top: 2px;
 	margin-left: 8px;
 	float: left;
@@ -361,6 +403,7 @@ A.like-btn
 {
 	margin-right: 10px;
 	float: right;
+	display: inline-block;
 }
 #prev-button, #next-button
 {
@@ -426,4 +469,25 @@ A.like-btn
 	width: 3px;
 	background-color: white;
 	margin-top: -6px;
+}
+#iframe-wrapper 
+{
+	height: 427px;
+	background-color: #fff;
+}
+.likes-count 
+{
+	display: none;
+	text-align: right;
+	width: 100px;
+	position: absolute;
+	right: 35px;
+}
+.you-liked-this
+{
+	display: none;
+	text-align: right;
+	width: 200px;
+	position: absolute;
+	right: 100px;
 }

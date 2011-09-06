@@ -30,12 +30,14 @@
 	
 	// update track highlight & make the MouseOut work for it again
 	<% unless session[:current_playing_id].nil? %>
+		jQuery('#track-<%= session[:current_playing_id] %> .likes-count').css('display', 'none');
 		jQuery('#track-<%= session[:current_playing_id] %>').fadeTo('fast', .5);
-		jQuery('#track-<%= session[:current_playing_id] %>').bind('mouseout', mouseOut);
+		jQuery('#track-<%= session[:current_playing_id] %>').bind('mouseleave', mouseLeave);
 	<% end %>
 	<% session[:current_playing_id] = @track.id %>
+	jQuery('#track-<%= session[:current_playing_id] %> .likes-count').css('display', 'inline-block');
 	jQuery('#track-<%= session[:current_playing_id] %>').fadeTo('fast', 1);
-	jQuery('#track-<%= session[:current_playing_id] %>').unbind('mouseout', mouseOut);
+	jQuery('#track-<%= session[:current_playing_id] %>').unbind('mouseleave', mouseLeave);
 </script>
 
 <div id="controls">
