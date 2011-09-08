@@ -49,4 +49,8 @@ jQuery(document).ready(function() {
 		jQuery(this).css('background-color', 'transparent');
 		jQuery('#select-by li').css('background-color', 'transparent');
 	});
+	jQuery('#select-by li a').click(function() {
+		jQuery('#select-by').prepend(jQuery(this).parent());
+		 //jQuery(this).parent().before("#select-by li:first");
+	});
 });

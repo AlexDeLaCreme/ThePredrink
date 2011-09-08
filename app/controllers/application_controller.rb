@@ -8,18 +8,18 @@ class ApplicationController < ActionController::Base
   @@CLIENT_ID = '481c7032a27349882e9c8b4498a34d89'
 
   def index
-    params[:show] ||= 'last-update'
+    params[:show] ||= 'this-week'
     
     case params[:show]
     when 'this-week'
-      @tracks = Track.joins(:soundcloud_tracks, :likes).select("tracks.*, COUNT(tracks.id) AS likes_this_week").group("tracks.id").paginate :per_page => 18, :page => params[:page], :order => 'likes_this_week DESC', :conditions => ["likes.created_at > ?", 1.week.ago], :include => [:artists, :genre, :likes]
-      all_tracks = Track.find :all, :joins => [:soundcloud_tracks, :likes], :select => "tracks.*, COUNT(tracks.id) AS likes_this_week", :group => "tracks.id", :order => 'likes_this_week DESC', :conditions => ["likes.created_at > ?", 1.week.ago], :include => [:artists, :genre, :likes]
+      @tracks = Track.joins(:soundcloud_tracks, :likes).select("tracks.*, COUNT(tracks.id) AS likes_this_week").group("tracks.id").paginate :per_page => 18, :page => params[:page], :order => 'likes_this_week DESC', :conditions => ["likes.created_at > ? and tracks.created_at > ?", 1.week.ago, 1.week.ago], :include => [:artists, :genre, :likes]
+      all_tracks = Track.find :all, :joins => [:soundcloud_tracks, :likes], :select => "tracks.*, COUNT(tracks.id) AS likes_this_week", :group => "tracks.id", :order => 'likes_this_week DESC', :conditions => ["likes.created_at > ? and tracks.created_at > ?", 1.week.ago, 1.week.ago], :include => [:artists, :genre, :likes]
     when 'this-month'
-      @tracks = Track.joins(:soundcloud_tracks, :likes).select("tracks.*, COUNT(tracks.id) AS likes_this_month").group("tracks.id").paginate :per_page => 18, :page => params[:page], :order => 'likes_this_month DESC', :conditions => ["likes.created_at > ?", 1.month.ago], :include => [:artists, :genre, :likes]
-      all_tracks = Track.find :all, :joins => [:soundcloud_tracks, :likes], :select => "tracks.*, COUNT(tracks.id) AS likes_this_month", :group => "tracks.id", :order => 'likes_this_month DESC', :conditions => ["likes.created_at > ?", 1.month.ago], :include => [:artists, :genre, :likes]
+      @tracks = Track.joins(:soundcloud_tracks, :likes).select("tracks.*, COUNT(tracks.id) AS likes_this_month").group("tracks.id").paginate :per_page => 18, :page => params[:page], :order => 'likes_this_month DESC', :conditions => ["likes.created_at > ? and tracks.created_at > ? and tracks.created_at <= ?", 1.month.ago, 1.month.ago, 1.week.ago], :include => [:artists, :genre, :likes]
+      all_tracks = Track.find :all, :joins => [:soundcloud_tracks, :likes], :select => "tracks.*, COUNT(tracks.id) AS likes_this_month", :group => "tracks.id", :order => 'likes_this_month DESC', :conditions => ["likes.created_at > ? and tracks.created_at > ? and tracks.created_at <= ?", 1.month.ago, 1.month.ago, 1.week.ago], :include => [:artists, :genre, :likes]
     when 'all-time'
-      @tracks = Track.joins(:soundcloud_tracks).order("likes_count DESC").paginate :per_page => 18, :page => params[:page], :include => [:artists, :genre]
-      all_tracks = Track.find :all, :joins => :soundcloud_tracks, :order => "likes_count DESC", :include => [:artists, :genre]
+      @tracks = Track.joins(:soundcloud_tracks).order("likes_count DESC").paginate :per_page => 18, :page => params[:page], :conditions => ["tracks.created_at <= ?", 1.month.ago], :include => [:artists, :genre]
+      all_tracks = Track.find :all, :joins => :soundcloud_tracks, :order => "likes_count DESC", :conditions => ["tracks.created_at <= ?", 1.month.ago], :include => [:artists, :genre]
     else
       @tracks = Track.joins(:soundcloud_tracks).order("likes_count DESC").paginate :per_page => 18, :page => params[:page], :conditions => ["tracks.updated_at > ?", 2.days.ago], :include => [:artists, :genre]
       all_tracks = Track.find :all, :joins => :soundcloud_tracks, :order => "likes_count DESC", :conditions => ["tracks.updated_at > ?", 2.days.ago], :include => [:artists, :genre]

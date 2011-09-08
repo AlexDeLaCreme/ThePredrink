@@ -159,7 +159,7 @@ BODY, HTML
 {
 	margin: 0;
 	/*background-color: #111111;*/
-	background-image: url(../images/bg.jpg);
+	background-image: url(../images/bg2.jpg);
 }
 #sidebar
 {
@@ -218,6 +218,7 @@ BODY, HTML
 	padding-right: 30px;
 	margin-left: 248px;
 	color: white;
+	position: relative;
 }
 #pagination
 {
@@ -227,7 +228,7 @@ BODY, HTML
 	width: 100px;
 	position: fixed;
 	/*bottom: 40px;*/
-	top: 753px;
+	top: 745px;
 	left: 50%;
 	margin-left: 50px;
 }
@@ -260,7 +261,7 @@ BODY, HTML
 	font-size: 9pt;
 	text-align: left;
 	margin-top: 26px;
-	right: 30px;
+	left: 30px;
 	margin-top: -10px;
 	height: 25px;
 	overflow: hidden;
